@@ -1,4 +1,4 @@
-package photorenamer;
+package photo_renamer;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -44,14 +44,17 @@ public class SubFrame extends JFrame implements WindowListener{
 		tagList = new TagList(pm, img, nameHistory);
 		this.rename = new JButton("Rename");
 		this.rename.addActionListener(new RenameButtonListener());
+		// put the nameHistory and rename Button in a panel
 		JPanel bottomPanel = new JPanel();
 		bottomPanel.setLayout(new FlowLayout());
 		bottomPanel.add(this.nameHistory);
 		bottomPanel.add(this.rename);
+		
 		add(tagList, BorderLayout.CENTER);
 		add(bottomPanel, BorderLayout.PAGE_END);
 		addWindowListener(this);
 		pack();
+		// SetVisible is very important, otherwise the program will be messed up
 		setVisible(true);
 	}
 	
@@ -62,6 +65,7 @@ public class SubFrame extends JFrame implements WindowListener{
 			tagList.updateTags((String) nameHistory.getSelectedItem());
 			Collection<String> namecol = img.getAllHistoryNames();
 			String[] nameHis = namecol.toArray(new String[namecol.size()]);
+			// Update the content in nameHistory comboBox
 			comboboxModel = new DefaultComboBoxModel<>(nameHis);
 			nameHistory.setModel(comboboxModel);
 		}

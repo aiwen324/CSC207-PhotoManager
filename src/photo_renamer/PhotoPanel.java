@@ -1,4 +1,4 @@
-package photorenamer;
+package photo_renamer;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -17,9 +17,14 @@ import photo.Photo;
 public class PhotoPanel extends JPanel {
 
 	public JLabel photoDirectoryLabel = new JLabel("No photo selected");
+	
 	public JButton photoChooser = new JButton("Choose Photo");
+	
+	// Need to implement some change in ActionListener so we need this value
 	public InternalPanel internalPanel;
+	
 	private PhotoManager photoManager;
+	
 	protected Photo img;
 
 	public PhotoPanel(PhotoManager pm) {
@@ -41,6 +46,11 @@ public class PhotoPanel extends JPanel {
 		photoChooser.addActionListener(mylistener);
 	}
 	
+	/**
+	 * This class is added to photoChooser Button
+	 * 
+	 *
+	 */
 	
 	class GUIListener implements ActionListener{
 		
@@ -49,9 +59,12 @@ public class PhotoPanel extends JPanel {
 			if (e.getSource() == photoChooser){
 				System.out.println("Photo Chooser button is clicked");
 				JFileChooser jfc = new JFileChooser();
+				// A filter for JFileChooser to only select directory or Image
+				// It requires show a list of image, don't understand what
+				// the requirement really mean, so just add a filter,
+				// you can switch to that filter in JFileChooser
 				FileNameExtensionFilter filter = new FileNameExtensionFilter("Images", "jpg", "png", "gif", "bmp");
 				jfc.addChoosableFileFilter(filter);
-				// TODO: Need to fix this
 				int returnVal = jfc.showOpenDialog(new PhotoPanel(photoManager));
 				if (returnVal == JFileChooser.APPROVE_OPTION){
 					File file = jfc.getSelectedFile();
@@ -59,6 +72,7 @@ public class PhotoPanel extends JPanel {
 					String filename = file.getName();
 					String filetype = filename.substring(
 							filename.lastIndexOf(".")+1);
+					
 					String[] extension = new String[] {"jpg", "png", "gif", "bmp"};
 					if (Arrays.asList(extension).contains(filetype)) {
 						Photo ph = new Photo(file.getAbsolutePath());

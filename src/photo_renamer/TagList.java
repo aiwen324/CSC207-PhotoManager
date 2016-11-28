@@ -1,4 +1,4 @@
-package photorenamer;
+package photo_renamer;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -99,12 +99,8 @@ public class TagList extends JPanel implements ListSelectionListener {
 	public void loadTags() {
 		System.out.println("loadTags method is called");
 		this.alltags = new HashSet<String>(this.pm.getTagsInMap());
-		// TODO:
-		System.out.println(alltags);
 		System.out.println(this.pm);
 		this.tagsPhotoHas = new HashSet<String>(this.img.getTags());
-		// TODO:
-		System.out.println(tagsPhotoHas);
 		System.out.println(this.img);
 		// Remove the tags that photo has and let exsistingTags get the
 		// array of tags
@@ -143,7 +139,6 @@ public class TagList extends JPanel implements ListSelectionListener {
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO: Delete it after debug
 			System.out.println("delete bottom pressed");
 			// it will help JList to setSelectedIndex
 			int index = list.getSelectedIndex();
@@ -190,10 +185,7 @@ public class TagList extends JPanel implements ListSelectionListener {
 			// Let img add the tag we select from JComboBox or
 			// we write
 			img.addTag(addTags);
-			// TODO
-			System.out.println(img);
 			// Update the photoManager with the img
-			System.out.println(pm);
 			// upadate JComboBox and JList in this JPanel
 			loadTags();
 			int index = tagsPhotoHas.size();

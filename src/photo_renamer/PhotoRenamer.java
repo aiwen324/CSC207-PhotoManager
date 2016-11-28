@@ -1,4 +1,4 @@
-package photorenamer;
+package photo_renamer;
 
 import java.awt.*;
 import java.awt.event.*;
